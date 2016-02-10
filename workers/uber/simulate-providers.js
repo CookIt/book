@@ -14,7 +14,7 @@ var city_location = {
 
 var specialties = ['American', 'Mexican', 'Chinese', 'Japanese', 'Indian', 'Breakfast', 'Coctails', 'Dessert'];
 var ratings = [1, 2, 2, 3, 3, 3, 4, 4, 5];
-var types = ['Standard', 'Premium']
+var types = ['standard', 'premium']
 
 
 var radius = 0.03
@@ -28,6 +28,8 @@ function simulate(){
   var duration = 1 + 15 * Math.random();
   var lat = city_location.lat + radius * (Math.random() - 0.5) * 2;
   var lon = city_location.lon + radius * (Math.random() - 0.5) * 2;
+
+  // Max - Min + 1 since decimal is blocked off + Min Val
   var price = Math.floor(Math.random() * (1000 - 20 + 1)) + 20; // Int ranges between 20 and 1000
   var rating = ratings[Math.floor(Math.random() * (8 - 0 + 1))];
   var specialty = specialties[Math.floor(Math.random() * (7 - 0 + 1))];
@@ -47,17 +49,12 @@ function simulate(){
   // simulate this person entering
   enter(person)
 
-  // simulate this person leaving after 'duration' seconds
-  setTimeout(function(){
-    leave(person)
-  }, duration * 1000)
-
 }
 
 function enter(person){
   console.log('enter', person)
-  
-  var personRef = usersRef.child(person.name);
+  var typeRef = usersRef.child(person.type);
+  var personRef = typeRef.child(person.name);
 
   personRef.set({
     lat: person.lat,
@@ -68,11 +65,51 @@ function enter(person){
     specialty: person.specialty,
     type: person.type
   });
+
+  moveForDuration(person)
+
+}
+
+// Will move the person once a second for the duration he/she is around for
+// Once the person has less than a second left - will wait for that time and call leave()
+function moveForDuration(person){
+  if (person.duration > 1.){
+    setTimeout(function(){
+      move(person)
+    }, 1000)
+  }
+  else {
+    setTimeout(function(){
+      leave(person)
+    }, person.duration * 1000)
+  }
+}
+
+// Will move the person's latitude and longitude by a small random amount
+// Decrements the person's duration and then calls moveForDuration()
+function move(person){
+  var typeRef = usersRef.child(person.type);
+  var personRef = typeRef.child(person.name);
+
+  var latChange = (Math.floor(Math.random() * (3)) - 1) * 0.01;
+  var lonChange = (Math.floor(Math.random() * (3)) - 1) * 0.01;
+  person.duration = person.duration - 1.0
+  person.lon = person.lon + lonChange
+  person.lat = person.lat + latChange
+
+  personRef.update({
+    lat: person.lat,
+    lon: person.lon
+  });
+
+  console.log('move', person)
+  moveForDuration(person)
 }
 
 function leave(person){
   console.log('leave', person)
-  var personRef = usersRef.child(person.name);
+  var typeRef = usersRef.child(person.type);
+  var personRef = typeRef.child(person.name);
 
   personRef.remove();
 }
