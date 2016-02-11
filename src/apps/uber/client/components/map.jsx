@@ -5,10 +5,13 @@ class MapView extends React.Component {
   render(){
 
     const providers = this.props.providers
+
     const providerElements = _.map(providers, function(p,i){
-      return <Marker position={p.pos} key={i}>
+      var latlng = [p.lat, p.lon]
+      console.log("Providers: "+latlng)
+      return <Marker position={latlng} key={i}>
         <Popup>
-          <span>{JSON.stringify(p)}</span>
+          <span>{(p.name)}<br />{(p.specialty)}<br />{(p.rating)}</span>
         </Popup>
       </Marker>
     })

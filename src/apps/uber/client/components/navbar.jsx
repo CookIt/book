@@ -1,17 +1,31 @@
 class NavBar extends React.Component {
 
   render(){
+    //actions.logged set appropriately in the data.jsx file
+    if(this.props.actions.logged==true) {
     return (
       <nav>
         <div className="nav-wrapper">
-        <a href="#" className="brand-logo">TODO</a>
+        <a href="#" className="brand-logo">CookIt</a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li><a href="todo.html">TODO</a></li>
-          <li><a href="todo.html">TODO</a></li>          
+          <li><a href="#" onClick={this.props.actions.logout}>Logout</a></li>         
+        </ul>
+        </div>
+      </nav>
+    ); }
+
+    else {
+      return (
+      <nav>
+        <div className="nav-wrapper">
+        <a href="#" className="brand-logo">CookIt</a>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <li><a href="#" onClick={this.props.actions.login}>Login via Github</a></li>
         </ul>
         </div>
       </nav>
     );
+    }
   }
 
 }
