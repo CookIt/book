@@ -6,6 +6,8 @@
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import bootstrap.css-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
@@ -24,6 +26,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
     <!-- https://github.com/PaulLeCam/react-leaflet -->
     <script src="https://npmcdn.com/react-leaflet/dist/react-leaflet.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
     <style>
       .leaflet-container {
@@ -31,30 +35,61 @@
         width: 80%;
         margin: 0 auto;
       }
+	  h1{
+		   margin-top: 30px;
+		   margin-bottom: 30px;
+		   font-size: 60px;
+		   color: teal;
+		   font-weight: bold;
+		   text-shadow: 2px 2px #ff0000;
+		}
+		
+	  .chef-div{
+	      margin-top: 30px;
+	      padding: 20px;
+		  color: whitesmoke;
+	  }
+	 
     </style>
 
   </head>
   <body>
-    <div id="app-container" class="container">
+      <nav>
+        <div class="nav-wrapper teal lighten-2">
+          <div class="container">
+            <a href="index.html" class="brand-logo">COOK IT</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+            </ul>
+          </div>
+        </div>
+      </nav>
+	<div class="container">
+		<div class="row text-center">
+			<h1> ON DEMAND CHEF FLEET </h1>
+		</div>
+		<div id="app-container" class="container">
     </div>
-
     <script>
       // MyComponents is a global object where each property is a reference to a component class
       MyComponents = {}
     </script>
+	
+			<!-- import each component class in components/ -->
+			<!-- The order is important. Dependencies must be loaded first -->
+			<script type="text/babel" src="components/user-list.jsx"></script>
+			<script type="text/babel" src="components/user-map.jsx"></script>
+			<script type="text/babel" src="components/provider-list.jsx"></script>
+			<script type="text/babel" src="components/provider-map.jsx"></script>
 
-    <!-- import each component class in components/ -->
-    <!-- The order is important. Dependencies must be loaded first -->
-    <script type="text/babel" src="components/user-list.jsx"></script>
-    <script type="text/babel" src="components/user-map.jsx"></script>
-    <script type="text/babel" src="components/provider-list.jsx"></script>
-    <script type="text/babel" src="components/provider-map.jsx"></script>
+			<!-- Main app container -->
+			<script type="text/babel" src="components/app.jsx"></script>
 
-    <!-- Main app container -->
-    <script type="text/babel" src="components/app.jsx"></script>
-
-    <!-- Connect the app and data -->
-    <script type="text/babel" src="data.jsx"></script>
+			<!-- Connect the app and data -->
+			<script type="text/babel" src="data.jsx"></script>
+			
 
   </body>
 </html>
