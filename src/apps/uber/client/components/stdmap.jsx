@@ -1,29 +1,33 @@
+
 const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLeaflet
 
-class UserMap extends React.Component {
+class StdMapView extends React.Component {
   render(){
-    console.log("This.user: "+this.props.users)
-  const providers = this.props.users
+
+    const providers = this.props.stdProviders
+
     const providerElements = _.map(providers, function(p,i){
-      console.log("Providers: "+p.pos)
-      return <Marker position={p.pos} key={i}>
+      var latlng = [p.lat, p.lon]
+      console.log("Std Providers: "+p.name)
+      return <Marker position={latlng} key={i}>
         <Popup>
-          <span>{(p.name)}</span>
+          <span>{(p.name)}<br />{(p.specialty)}<br />{(p.rating)}</span>
         </Popup>
       </Marker>
     })
 
     let userElement
     if (this.props.user){
-      userElement = <CircleMarker center={this.props.users.pos}/>
+      userElement = <CircleMarker center={this.props.user.pos}/>
     } else {
       userElement = ''
     }
 
     // Note: .bind(this) is important for the handler function's 'this'
-    // pointer to refer to this ProviderMap instance
+    // pointer to refer to this MapView instance
 
-    return  <div><strong>Map showing the different users:</strong><Map center={this.props.center}
+    if (this.props.user) {
+    return  <div><strong>Map showing the different standard service providers:</strong><Map center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
@@ -32,6 +36,10 @@ class UserMap extends React.Component {
         {providerElements}
         {userElement}
       </Map></div>
+    }
+    else {
+      return <div></div>
+    }
   }
 
 
@@ -41,4 +49,4 @@ class UserMap extends React.Component {
   }
 }
 
-MyComponents.UserMap = UserMap
+MyComponents.StdMapView = StdMapView

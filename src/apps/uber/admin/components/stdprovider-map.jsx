@@ -1,14 +1,15 @@
 const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLeaflet
 
-class UserMap extends React.Component {
+class StdProviderMap extends React.Component {
   render(){
-    console.log("This.user: "+this.props.users)
-  const providers = this.props.users
+    console.log("pmap:"+this.props.stdProviders)
+	const providers = this.props.stdProviders
     const providerElements = _.map(providers, function(p,i){
-      console.log("Providers: "+p.pos)
-      return <Marker position={p.pos} key={i}>
+      var latlng = [p.lat, p.lon]
+      console.log("Providers: "+latlng)
+      return <Marker position={latlng} key={i}>
         <Popup>
-          <span>{(p.name)}</span>
+          <span>{(p.name)}<br />{(p.specialty)}<br />{(p.rating)}</span>
         </Popup>
       </Marker>
     })
@@ -23,12 +24,13 @@ class UserMap extends React.Component {
     // Note: .bind(this) is important for the handler function's 'this'
     // pointer to refer to this ProviderMap instance
 
-    return  <div><strong>Map showing the different users:</strong><Map center={this.props.center}
+    return  <div><strong>Map showing the different standard service providers:</strong><Map className="map-div" center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
+
         {providerElements}
         {userElement}
       </Map></div>
@@ -41,4 +43,5 @@ class UserMap extends React.Component {
   }
 }
 
-MyComponents.UserMap = UserMap
+MyComponents.StdProviderMap = StdProviderMap
+

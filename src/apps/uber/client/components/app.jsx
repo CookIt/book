@@ -10,7 +10,14 @@ class App extends React.Component {
       </div>
       <div className="card">
         <MyComponents.MapView
-            providers={this.props.data.providers}
+            premProviders={this.props.data.premProviders}
+            center={this.props.data.center}
+            user={this.props.data.user}
+            setUserLocationAction={this.props.actions.setUserLocation}/>
+      </div>
+      <div className="card">
+      <MyComponents.StdMapView
+            stdProviders={this.props.data.stdProviders}
             center={this.props.data.center}
             user={this.props.data.user}
             setUserLocationAction={this.props.actions.setUserLocation}/>

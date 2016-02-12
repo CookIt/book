@@ -2,7 +2,8 @@ const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLea
 
 class ProviderMap extends React.Component {
   render(){
-	const providers = this.props.users
+    console.log("pmap:"+this.props.premProviders)
+  const providers = this.props.premProviders
     const providerElements = _.map(providers, function(p,i){
       var latlng = [p.lat, p.lon]
       console.log("Providers: "+latlng)
@@ -23,16 +24,16 @@ class ProviderMap extends React.Component {
     // Note: .bind(this) is important for the handler function's 'this'
     // pointer to refer to this ProviderMap instance
 
-    return  <Map center={this.props.center}
+    return  <div><strong>Map showing the different premium service providers:</strong><Map className="map-div" center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
+
         {providerElements}
         {userElement}
-      </Map>
+      </Map></div>
   }
 
 
@@ -43,3 +44,4 @@ class ProviderMap extends React.Component {
 }
 
 MyComponents.ProviderMap = ProviderMap
+
