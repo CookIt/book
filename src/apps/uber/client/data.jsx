@@ -1,7 +1,8 @@
 // a single 'data' object that holds the data of your entire app, with initial values
 var data = {
   center: [37.78, -122.41], // San Francisco
-  providers: [],
+  premProviders: [],
+  stdProviders: [],
   user: null
 }
 
@@ -30,7 +31,16 @@ var firebaseRef = new Firebase('https://cookit.firebaseio.com/')
 firebaseRef.child('providers/premium')
   .on('value', function(snapshot){
 
-    data.providers = _.values(snapshot.val())
+    data.premProviders = _.values(snapshot.val())
+
+    render()
+
+  })
+
+firebaseRef.child('providers/standard')
+  .on('value', function(snapshot){
+
+    data.stdProviders = _.values(snapshot.val())
 
     render()
 

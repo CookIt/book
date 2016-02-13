@@ -1,8 +1,8 @@
-class ProviderList extends React.Component {
+class StdProviderList extends React.Component {
   render(){
     var providerArr = []
     
-    var providers = this.props.premProviders;
+    var providers = this.props.stdProviders;
 	
 
 		for (var key in providers){	    
@@ -17,7 +17,7 @@ class ProviderList extends React.Component {
 	return (<div>
 			<ul>
 			<li>
-				<div className="teal chef-div"><h4><b>PREMIUM COOKIT CHEFS</b></h4>
+				<div className="teal chef-div"><h4><b>STANDARD COOKIT CHEFS</b></h4>
 				<div>
 				<ul>
 				{providerArr}
@@ -30,4 +30,4 @@ class ProviderList extends React.Component {
   }
 }
 
-MyComponents.ProviderList = ProviderList
+MyComponents.StdProviderList = StdProviderList

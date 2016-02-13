@@ -4,11 +4,11 @@ const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLea
 class MapView extends React.Component {
   render(){
 
-    const providers = this.props.providers
+    const providers = this.props.premProviders
 
     const providerElements = _.map(providers, function(p,i){
       var latlng = [p.lat, p.lon]
-      console.log("Providers: "+latlng)
+      console.log("Prem Providers: "+p.name)
       return <Marker position={latlng} key={i}>
         <Popup>
           <span>{(p.name)}<br />{(p.specialty)}<br />{(p.rating)}</span>
@@ -26,16 +26,20 @@ class MapView extends React.Component {
     // Note: .bind(this) is important for the handler function's 'this'
     // pointer to refer to this MapView instance
 
-    return  <Map center={this.props.center}
+    if (this.props.user) {
+    return  <div><strong>Map showing the different premium service providers:</strong><Map center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
         {providerElements}
         {userElement}
-      </Map>
+      </Map></div>
+    }
+    else {
+      return <div></div>
+    }
   }
 
 

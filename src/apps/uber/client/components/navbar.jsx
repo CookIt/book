@@ -5,11 +5,11 @@ class NavBar extends React.Component {
     if(this.props.actions.logged==true) {
     return (
       <nav>
-        <div className="nav-wrapper">
-        <a href="#" className="brand-logo">CookIt</a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li><a href="#" onClick={this.props.actions.logout}>Logout</a></li>         
-        </ul>
+        <div className="nav-wrapper teal lighten-2">
+            <a href="#" className="brand-logo left">COOK IT</a>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><a href="#" onClick={this.props.actions.logout}>Logout</a></li>         
+              </ul>
         </div>
       </nav>
     ); }
@@ -17,8 +17,8 @@ class NavBar extends React.Component {
     else {
       return (
       <nav>
-        <div className="nav-wrapper">
-        <a href="#" className="brand-logo">CookIt</a>
+        <div className="nav-wrapper teal lighten-2">
+        <a href="#" className="brand-logo left">COOK IT</a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><a href="#" onClick={this.props.actions.login}>Login via Github</a></li>
         </ul>
