@@ -8,7 +8,7 @@ class User extends React.Component {
       <div className ="green darken-2">
       <div className="card green darken-2">
       <div className="container">
-          <h2 align="center">Welcome to <strong>COOK IT</strong>{this.props.user.displayName}!</h2>
+          <h2 align="center">Welcome to <strong>COOK IT, </strong>{this.props.user.displayName}!</h2>
       </div>
       </div>
       </div>
