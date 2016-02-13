@@ -27,7 +27,8 @@ class MapView extends React.Component {
     // pointer to refer to this MapView instance
 
     if (this.props.user) {
-    return  <div><strong>Map showing the different premium service providers:</strong><Map center={this.props.center}
+    return  <div className="container grey darken-3">
+    <h2>Premium service providers:</h2><Map center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
