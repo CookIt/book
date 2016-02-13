@@ -1,33 +1,41 @@
 class StdProviderList extends React.Component {
   render(){
     var providerArr = []
+    var evens = []
+	var odds = []
     
     var providers = this.props.stdProviders;
-	
-
 		for (var key in providers){	    
-			providerArr.push(<li><b>{providers[key].name}</b></li>);
-			providerArr.push(<li>Service: {providers[key].type}</li>);
-			providerArr.push(<li>Position: [{providers[key].lat},{providers[key].lon}]</li>);
-			providerArr.push(<li>Speciality: {providers[key].specialty}</li>);
-			providerArr.push(<li>Rating: {providers[key].rating}</li>);
-			providerArr.push(<br/>);
+			providerArr.push(
+          			<div className="card green darken-4" key={providers[key].name}>
+            			<div className="card-content white-text">
+            	  			<span className="card-title">{providers[key].name}</span>
+              				<p>
+              					{providers[key].specialty}<br />
+              					{providers[key].rating} Stars<br />
+              				</p>
+            			</div>
+          			</div>)
 		}
-	
-	return (<div>
-			<ul>
-			<li>
-				<div className="teal chef-div"><h4><b>STANDARD COOKIT CHEFS</b></h4>
-				<div>
-				<ul>
-				{providerArr}
-				</ul>
-				</div>
-				</div>
-			</li>
-			</ul>
-		   </div>);
+		for (var i=0;i<providerArr.length;i++){
+    		if ((i+2)%2==0) {
+        		evens.push(providerArr[i]);
+    		}
+    		else {
+        		odds.push(providerArr[i]);
+    		}
+    	}
+    	providerArr = [evens, odds]
+	return (
+	<div className="row">
+		<div className="col s6">
+			{providerArr[0]}
+		</div>
+		<div className="col s6">
+			{providerArr[1]}
+		</div>
+	</div>
+		);
   }
 }
-
 MyComponents.StdProviderList = StdProviderList

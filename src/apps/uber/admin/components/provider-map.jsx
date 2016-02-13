@@ -24,7 +24,7 @@ class ProviderMap extends React.Component {
     // Note: .bind(this) is important for the handler function's 'this'
     // pointer to refer to this ProviderMap instance
 
-    return  <div><strong>Map showing the different premium service providers:</strong><Map className="map-div" center={this.props.center}
+    return  <div><h4><b>PREMIUM COOKIT CHEFS</b></h4><Map className="map-div" center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
@@ -35,7 +35,6 @@ class ProviderMap extends React.Component {
         {userElement}
       </Map></div>
   }
-
 
   handleLeafletClick(event){
     console.log('leaflet click event', event)

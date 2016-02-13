@@ -24,7 +24,7 @@ class StdProviderMap extends React.Component {
     // Note: .bind(this) is important for the handler function's 'this'
     // pointer to refer to this ProviderMap instance
 
-    return  <div><strong>Map showing the different standard service providers:</strong><Map className="map-div" center={this.props.center}
+    return  <div><h4><b>STANDARD COOKIT CHEFS</b></h4><Map className="map-div" center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer

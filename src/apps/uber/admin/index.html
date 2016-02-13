@@ -19,7 +19,7 @@
     <script src="../lib/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
     <!-- https://github.com/PaulLeCam/react-leaflet -->
@@ -47,11 +47,13 @@
   </head>
   <body>
     <nav>
-        <div class="nav-wrapper teal lighten-2">
+        <div class="nav-wrapper green darken-2">
           <div class="container">
-            <a href="index.html" class="brand-logo center">COOK IT</a>
+            <a href="../index.html" class="brand-logo left">COOK IT</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+              <li><a href="../client/index.html">User</a></li>
+              <li class="active"><a href="#">Admin</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
             </ul>
@@ -60,7 +62,6 @@
       </nav>
   <div class="container">
     <div class="row text-center">
-      <h1> ON DEMAND CHEF FLEET </h1>
     </div>
     <div id="app-container" class="container">
     </div>
