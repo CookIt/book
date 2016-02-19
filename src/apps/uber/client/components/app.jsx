@@ -1,12 +1,22 @@
 class App extends React.Component {
   render(){
+    var log;
+    var signout;
+    if(this.props.actions.login) {
+      log = this.props.actions.login
+      signout = this.props.actions.logout
+    }
+    else {
+      log = this.props.actions.loginFB
+      signout = this.props.actions.logoutFB
+    }
     return <div>
 
       <MyComponents.NavBar actions={this.props.actions}/>
         <MyComponents.User
             user={this.props.data.user}
-            loginAction={this.props.actions.login}
-            logoutAction={this.props.actions.logout}/>
+            loginAction={log}
+            logoutAction={signout}/>
 
         <div className="container">
 
@@ -27,18 +37,8 @@ class App extends React.Component {
             setUserLocationAction={this.props.actions.setUserLocation}/>
 
           </div>
-
     </div>
-
-
-
-
   </div>
-
-
-
-
-
 
   }
 }
