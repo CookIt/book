@@ -10,26 +10,41 @@ class MapView extends React.Component {
     const stdproviders = this.props.stdProviders
     const providerElements = _.map(providers, function(p,i){
       var latlng = [p.lat, p.lon]
-      return <CircleMarker center={latlng} color='red' key={i}>
+      var myIcon = L.icon({
+        iconUrl: '../icons/standard.png',
+        iconSize:  [32]
+      })
+      var myRating = p.rating + " stars"
+      return <Marker icon={myIcon} position={latlng} key={i}>
         <Popup>
-          <span>{(p.name)}<br />{(p.specialty)}<br />{(p.rating)}<br />
+          <span>{(p.name)}<br />{(p.specialty)}<br />{(myRating)}<br />
 		  </span>
         </Popup>
-      </CircleMarker>
+      </Marker>
     })
 	const stdElements = _.map(stdproviders, function(p,i){
       var latlng = [p.lat, p.lon]
-      return <CircleMarker center={latlng} color='blue' key={i}>
+      var myIconURL = '../icons/' + p.specialty.toLowerCase() + '.png'
+      var myIcon = L.icon({
+        iconUrl: myIconURL,
+        iconSize:  [32]
+      })
+      var myRating = p.rating + " stars"
+      return <Marker position={latlng} icon={myIcon} key={i}>
         <Popup>
-          <span>{(p.name)}<br />{(p.specialty)}<br />{(p.rating)}<br />
+          <span>{(p.name)}<br />{(myRating)}<br />
 		  </span>
         </Popup>
-      </CircleMarker>
+      </Marker>
     })
 
     let userElement
     if (this.props.user){
-      userElement = <Marker position={this.props.user.pos}/>
+      var myIcon = L.icon({
+        iconUrl: '../icons/user.png',
+        iconSize:  [32]
+      })
+      userElement = <Marker icon={myIcon} position={this.props.user.pos}/>
     } else {
       userElement = ''
     }
@@ -38,8 +53,8 @@ class MapView extends React.Component {
     // pointer to refer to this MapView instance
 
     if (this.props.user) {
-    return  <div className="container grey darken-3">
-    <h2>Service providers:</h2><Map center={this.props.center}
+    return  <div className="container brown darken-3 white-text center">
+    <h3>Set Your Location</h3><Map center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
@@ -54,7 +69,6 @@ class MapView extends React.Component {
       return <div></div>
     }
   }
-
 
   handleLeafletClick(event){
     console.log('leaflet click event', event)

@@ -7,12 +7,11 @@ class StdProviderList extends React.Component {
     var providers = this.props.stdProviders;
 		for (var key in providers){	    
 			providerArr.push(
-          			<div className="card green darken-4" key={providers[key].name}>
+          			<div className="card brown darken-3" key={providers[key].name}>
             			<div className="card-content white-text">
             	  			<span className="card-title">{providers[key].name}</span>
               				<p>
-              					{providers[key].specialty}<br />
-              					{providers[key].rating} Stars<br />
+              					{providers[key].rating} Stars
               				</p>
             			</div>
           			</div>)

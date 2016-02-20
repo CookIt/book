@@ -15,12 +15,12 @@ class App extends React.Component {
       <MyComponents.NavBar actions={this.props.actions}/>
         <MyComponents.User
             user={this.props.data.user}
+            actions={this.props.actions}
             loginAction={log}
             logoutAction={signout}/>
 
         <div className="container">
 
-        <div className="card green darken-2">
         <MyComponents.MapView
             premProviders={this.props.data.premProviders}
 			stdProviders={this.props.data.stdProviders}
@@ -28,7 +28,6 @@ class App extends React.Component {
             user={this.props.data.user}
             setUserLocationAction={this.props.actions.setUserLocation}/>
           </div>
-		  </div>
     </div>
 
   }

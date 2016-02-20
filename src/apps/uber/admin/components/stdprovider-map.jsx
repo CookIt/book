@@ -6,10 +6,14 @@ class StdProviderMap extends React.Component {
 	const providers = this.props.stdProviders
     const providerElements = _.map(providers, function(p,i){
       var latlng = [p.lat, p.lon]
-      console.log("Providers: "+latlng)
-      return <Marker position={latlng} key={i}>
+      var myIcon = L.icon({
+        iconUrl: '../icons/standard.png',
+        iconSize:  [32]
+      })
+      var myRating = p.rating + ' stars'
+      return <Marker icon={myIcon} position={latlng} key={i}>
         <Popup>
-          <span>{(p.name)}<br />{(p.specialty)}<br />{(p.rating)}</span>
+          <span>{(p.name)}<br />{(myRating)}</span>
         </Popup>
       </Marker>
     })
@@ -24,7 +28,7 @@ class StdProviderMap extends React.Component {
     // Note: .bind(this) is important for the handler function's 'this'
     // pointer to refer to this ProviderMap instance
 
-    return  <div><h4><b>STANDARD COOKIT CHEFS</b></h4><Map className="map-div" center={this.props.center}
+    return  <div><center><h4><b>STANDARD COOKIT CHEFS</b></h4></center><Map className="map-div" center={this.props.center}
           zoom={13}
           onLeafletClick={this.handleLeafletClick.bind(this)}>
         <TileLayer
@@ -36,10 +40,9 @@ class StdProviderMap extends React.Component {
       </Map></div>
   }
 
-
   handleLeafletClick(event){
     console.log('leaflet click event', event)
-    this.props.setUserLocationAction(event.latlng)
+    //this.props.setUserLocationAction(event.latlng)
   }
 }
 

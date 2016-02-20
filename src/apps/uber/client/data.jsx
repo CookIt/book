@@ -162,7 +162,6 @@ actions.logout = function(){
   }
 
 }
-
 actions.logoutFB = function(){
 
   if (data.user){
